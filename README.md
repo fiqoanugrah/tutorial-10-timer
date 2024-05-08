@@ -3,7 +3,7 @@
 
 > REFLECTION
 
->> 1.2. Understanding how it works.
+> 1.2. Understanding how it works.
 
 Adding such a "Hey hey sentence right after the spawner.sparwn (...);
 and look at what happened. This is a result capture of the execution.
@@ -31,9 +31,19 @@ After a two-second delay, the task completes and prints "done!".
 
 This shows the non-blocking nature of asynchronous tasks. While the async task is waiting to complete its delay, the main program continues execution and prints "hey hey!". After the delay, the task resumes and completes its execution.
 
-## Conclusion
+# Conclusion
 
 This example illustrates the power of asynchronous programming in Rust, allowing multiple tasks to proceed without blocking each other, thereby increasing the efficiency of the program.
 
+> 1.3. Experiment 1.3: Multiple Spawn and removing drop?
+<img width="625" alt="Screenshot 2024-05-08 at 17 37 44" src="https://github.com/fiqoanugrah/tutorial-10-timer/assets/87713462/83dcd8ae-0198-4867-8a6c-d26e40a2b32c">
 
+after:
+<img width="592" alt="Screenshot 2024-05-08 at 17 37 07" src="https://github.com/fiqoanugrah/tutorial-10-timer/assets/87713462/fad1219f-6e4a-4b7d-bb06-9e7f9c4d8b44">
+
+**The drop(spawner) Effect**
+
+- With drop(spawner): Dropping the spawner typically signals the executor that no more tasks will be incoming. This allows the executor to run to completion once all existing tasks are processed. In a scenario where drop(spawner) is called, you'd expect the executor to shut down after all tasks complete their execution.
+  
+- Without drop(spawner): By commenting out drop(spawner), you keep the possibility open for more tasks to be added in the future. The executor does not immediately shut down after current tasks are completed because it may still be waiting for potential new tasks.
 
